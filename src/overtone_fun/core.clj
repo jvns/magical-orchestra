@@ -31,4 +31,6 @@
 
 '(play-rhythm rhythm (metro))
 
+'(play-rhythm rhythm2 (metro))
+
 
