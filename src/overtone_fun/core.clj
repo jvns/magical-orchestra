@@ -17,7 +17,9 @@
         filt (bpf (+ sqr noise) 9000 0.5)]
     (* amp env filt)))
 
-(def metro (metronome 120))(def rhythm [[0 o-hat] [1 c-hat] [1.65 c-hat])
+(def metro (metronome 120))
+
+(def rhythm [[0 o-hat] [1 c-hat] [1.65 c-hat])
 
 (defn play-rhythm [rhythm beat]
   (play-once rhythm beat)
