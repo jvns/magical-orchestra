@@ -10,6 +10,7 @@
     (* amp env filt)))
 
 
+
 (definst o-hat [amp 0.8 t 0.5]
   (let [env (env-gen (perc 0.001 t) 1 1 0 1 FREE)
         noise (white-noise)

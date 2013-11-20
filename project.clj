@@ -6,4 +6,5 @@
   :dependencies [
                  [org.clojure/clojure "1.5.1"]
                  [overtone "0.9.0-SNAPSHOT"]
+                 [http-kit "2.1.12"]
                  [jline "0.9.94"]])
