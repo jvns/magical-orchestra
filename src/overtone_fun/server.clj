@@ -21,6 +21,8 @@
    {:sound 121099 :name "Sleigh Bells"}
    {:sound 91191  :name "Cowbell"}])
 
+(def metro-fast (metronome 480))
+(def metro-slow (metronome 60))
 ; Pull the drum sounds from the server
 (def freesound-drums (map
    (fn [x] (update-in x [:sound] freesound-sample))
@@ -32,10 +34,10 @@
 
 ; Play a sound stored in a map
 (defn play-sound [sound]
-  ((:sound sound)))
+  (at (metro-fast (metro-fast)) ((:sound sound))))
 
-; Store all the player instruments so that they
-; don't change every request
+;; Store all the player instruments so that they
+;; don't change every request
 (def player-instruments (atom {}))
 
 (defn play-sound-request [req]
@@ -59,11 +61,12 @@
   (GET "/" [] play-sound-request)
   (route/files "/static/")
   (route/not-found "<p>Page not found.</p>"))
-) 
+)
 
+(stop-server)
 (def stop-server
   (run-server (site #'all-routes) {:port 8080}))
 
-(stop-server)
+
 
 
