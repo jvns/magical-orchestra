@@ -85,9 +85,6 @@
        :headers {"Content-Type" "text/plain"}
        :body (:name sound)})))
 
-;; We need to save 'stop-server so that we can
-;; stop the server when we're done
-
 ;;
 (defroutes all-routes
   (GET "/" [] play-sound-request)
@@ -95,6 +92,8 @@
   (route/not-found "<p>Page not found.</p>"))
 
 (comment
+  ;; We need to save 'stop-server so that we can
+  ;; stop the server when we're done
   (def stop-server
     (run-server (site #'all-routes) {:port 8080}))
 
