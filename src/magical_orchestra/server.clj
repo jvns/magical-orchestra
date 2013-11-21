@@ -75,7 +75,7 @@
     {:name "Silence" :sound (fn [& _])}))
 
 (defn play-sound-request [req]
-  (let [keycode (-> req :query-string Integer/parseInt)
+  (let [keycode (-> req :params :keycode Integer/parseInt)
         ip-addr (-> req :remote-addr)]
     (when-not (get @player-instruments ip-addr)
       (swap! player-instruments assoc ip-addr (random-drums SOUNDS-PER-PLAYER)))

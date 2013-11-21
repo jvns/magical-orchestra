@@ -8,7 +8,7 @@
     <script>
       $(document).ready(function() {
       $('body').keydown(function(event) {
-      var url = "/?" + event.keyCode;
+      var url = "/?keycode=" + event.keyCode;
       $.get( url, function( data ) {
 
       $('#instrument').html(data);
