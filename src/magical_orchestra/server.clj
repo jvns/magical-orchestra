@@ -1,13 +1,12 @@
 (ns magical-orchestra.server
-   (:require
-   [overtone.live :refer :all]
-   [overtone.inst.sampled-piano :refer :all]
-   [overtone.inst.drum :as drum]
-   [overtone.inst.synth :as synth]
-   [compojure.route :as route]
-   [compojure.handler :refer [site]] 
-   [compojure.core :refer [defroutes GET]]
-   [org.httpkit.server :refer [run-server]]))
+  (:require [overtone.live :refer :all]
+            [overtone.inst.sampled-piano :refer :all]
+            [overtone.inst.drum :as drum]
+            [overtone.inst.synth :as synth]
+            [compojure.route :as route]
+            [compojure.handler :refer [site]]
+            [compojure.core :refer [defroutes GET]]
+            [org.httpkit.server :refer [run-server]]))
 
 
 ; Some drums we found on http://freesound.org
@@ -98,10 +97,10 @@
        :body (:name sound)}
       )))
 
-;; We need to save 'stop-server so that we can 
+;; We need to save 'stop-server so that we can
 ;; stop the server when we're done
 
-;; 
+;;
 (defroutes all-routes
   (GET "/" [] play-sound-request)
   (route/files "/static/")
@@ -116,4 +115,3 @@
 
 (defn -main [& args]
   (run-server (site #'all-routes) {:port 8080}))
-
