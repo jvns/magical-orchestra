@@ -46,10 +46,8 @@
     (at (m (+ 0 beat-num)) (sound)))
   (apply-at (m (+ freq beat-num)) play-snare m (+ freq beat-num) freq sound []))
 
-(stop)
-(do
-  (play-snare metro-fast (metro-fast) 16 bass-sound)
-)
+
+
 
 
 ;; Get a random drum sound
@@ -96,12 +94,16 @@
   (route/files "/static/")
   (route/not-found "<p>Page not found.</p>"))
 
+(comment
+  (def stop-server
+    (run-server (site #'all-routes) {:port 8080}))
 
- (def stop-server
-  (run-server (site #'all-routes) {:port 8080}))
 
-
- (stop-server)
+  (stop-server)
+  )
 
 (defn -main [& args]
+  (stop)
+  (do
+    (play-snare metro-fast (metro-fast) 16 bass-sound))
   (run-server (site #'all-routes) {:port 8080}))
