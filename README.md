@@ -1,14 +1,13 @@
-# overtone-fun
+# Magical Orchestra
 
-A Clojure library designed to ... well, that part is up to you.
+Welcome to Lyndsey and Julia's Magical Orchestra!
 
 ## Usage
 
-FIXME
 
-## License
+```
+lein run -m magical-orchestra.server
+```
 
-Copyright © 2013 FIXME
+Then go to http://localhost:8080.
 
-Distributed under the Eclipse Public License either version 1.0 or (at
-your option) any later version.
