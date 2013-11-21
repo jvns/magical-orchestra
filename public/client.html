@@ -3,13 +3,15 @@
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
   </head>
   <body>
+    <h2> Press an arrow key!</h2>
+    <h2 id="instrument"></h2>
     <script>
       $(document).ready(function() {
       $('body').keydown(function(event) {
       var url = "http://localhost:8080/?" + event.keyCode;
       $.get( url, function( data ) {
 
-      console.log(data);
+      $('#instrument').html(data);
       });
       });
       });
