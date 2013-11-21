@@ -30,7 +30,7 @@
    (fn [x] (update-in x [:sound] freesound-sample))
    freesound-drum-ids))
 
-(def base-sound (:sound (nth freesound-drums 3)))
+(def bass-sound (:sound (nth freesound-drums 3)))
 
 (defn play-snare [m beat-num freq sound]
   (at (m (+ 0 beat-num)) (sound))
@@ -43,8 +43,7 @@
   (at (m (+ 0 beat-num)) (sound))
   (apply-at (m (+ freq beat-num)) play-snare m (+ freq beat-num) freq sound []))
 
-(play-snare metro-fast (metro-fast) 16 base-sound)
-(stop)
+(play-snare metro-fast (metro-fast) 16 bass-sound)
 
 ; Get a random drum sound
 (defn random-drum []
@@ -79,12 +78,10 @@
   (GET "/" [] play-sound-request)
   (route/files "/static/")
   (route/not-found "<p>Page not found.</p>"))
-)
 
 
 ;; (def stop-server
-;;  (run-server (site #'all-routes) {:port 8080})
-)
+;;  (run-server (site #'all-routes) {:port 8080}))
 
 ;; (stop-server)
 
