@@ -85,7 +85,6 @@
        :headers {"Content-Type" "text/plain"}
        :body (:name sound)})))
 
-;;
 (defroutes all-routes
   (GET "/" [] play-sound-request)
   (route/files "/static/")
