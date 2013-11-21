@@ -15,7 +15,12 @@
   [
    {:sound 104214 :name "Crash Cymbal"}
 ;;   {:sound 120403 :name "Drum"}
-   {:sound 63239  :name "Tambourine"}
+   {:sound 63239 :name "Tambourine"}
+   {:sound 9876 :name "Car Door"}
+   {:sound 26903 :name "Snare"}
+   {:sound 15348 :name "Pop"}
+   {:sound 9874 :name "Crow"}
+   {:sound 60009 :name "Bamboo Stick"}
    {:sound 121099 :name "Sleigh Bells"}
    {:sound 21840 :name "Drum"} ;; Wood noise
 ;;   {:sound 163727 :name "Cow Mooing"}
