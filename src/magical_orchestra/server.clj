@@ -41,14 +41,9 @@
 
 
 (defn play-snare [m beat-num freq sound]
-  (at (m (+ 0 beat-num)) (sound))
-  (at (m (+ 0 beat-num)) (sound))
-  (at (m (+ 0 beat-num)) (sound))
-  (at (m (+ 0 beat-num)) (sound))
-  (at (m (+ 0 beat-num)) (sound))
-  (at (m (+ 0 beat-num)) (sound))
-  (at (m (+ 0 beat-num)) (sound))
-  (at (m (+ 0 beat-num)) (sound))
+  ;; hack to increase volume
+  (dotimes [_ 8]
+    (at (m (+ 0 beat-num)) (sound)))
   (apply-at (m (+ freq beat-num)) play-snare m (+ freq beat-num) freq sound []))
 
 (stop)
