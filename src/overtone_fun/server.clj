@@ -21,7 +21,7 @@
    {:sound 121099 :name "Sleigh Bells"}
    {:sound 91191  :name "Cowbell"}])
 
-(def metro-fast (metronome 480))
+(def metro-fast (metronome 960))
 (def metro-slow (metronome 60))
 ; Pull the drum sounds from the server
 (def freesound-drums (map
@@ -67,6 +67,6 @@
 (def stop-server
   (run-server (site #'all-routes) {:port 8080}))
 
-
-
+(defn -main [& args]
+  (run-server (site #'all-routes) {:port 8080}))
 
