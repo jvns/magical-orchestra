@@ -14,11 +14,11 @@
 (def freesound-drum-ids
   [
    {:sound 104214 :name "Crash Cymbal"}
-   {:sound 120403 :name "Drum"}
+;;   {:sound 120403 :name "Drum"}
    {:sound 63239  :name "Tambourine"}
    {:sound 121099 :name "Sleigh Bells"}
-   {:sound 21840 :name "Wood"}
-   {:sound 163727 :name "Cow Mooing"}
+   {:sound 21840 :name "Drum"} ;; Wood noise
+;;   {:sound 163727 :name "Cow Mooing"}
    {:sound 65480 :name "Wine Bottle"}
    {:sound 65231 :name "Metal Bowl"}
    {:sound 91191  :name "Cowbell"}])
