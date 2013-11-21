@@ -104,10 +104,11 @@
   (route/not-found "<p>Page not found.</p>"))
 
 
-;; (def stop-server
-;;  (run-server (site #'all-routes) {:port 8080}))
+ (def stop-server
+  (run-server (site #'all-routes) {:port 8080}))
 
-;; (stop-server)
+
+ (stop-server)
 
 (defn -main [& args]
   (run-server (site #'all-routes) {:port 8080}))
