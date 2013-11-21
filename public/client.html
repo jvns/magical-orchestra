@@ -8,7 +8,7 @@
     <script>
       $(document).ready(function() {
       $('body').keydown(function(event) {
-      var url = "http://localhost:8080/?" + event.keyCode;
+      var url = "/?" + event.keyCode;
       $.get( url, function( data ) {
 
       $('#instrument').html(data);

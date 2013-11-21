@@ -16,6 +16,10 @@
    {:sound 104214 :name "Crash Cymbal"}
 ;;   {:sound 120403 :name "Drum"}
    {:sound 63239 :name "Tambourine"}
+   {:sound 7786 :name "Kazoo"}
+   {:sound 26710 :name "Snare"}
+   {:sound 62793 :name "Laser"}
+   {:sound 96109 :name "Xylophone"}
    {:sound 9876 :name "Car Door"}
    {:sound 26903 :name "Snare"}
    {:sound 15348 :name "Pop"}
@@ -56,7 +60,6 @@
 (stop)
 (do
   (play-snare metro-fast (metro-fast) 16 bass-sound)
-  (play-snare metro-fast (+ (metro-fast) 2) 16 bass-sound)
 )
 
 
@@ -81,6 +84,7 @@
     ({:name "Silence\" :sound #()"})
     (let [player-sounds (get @player-instruments ip-addr)]
       (nth player-sounds (mod keycode 4)))))
+
 
 (defn play-sound-request [req]
   (let [keycode (-> req :query-string Integer/parseInt)
