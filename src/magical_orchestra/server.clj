@@ -14,9 +14,7 @@
 (def freesound-drum-ids
   [
    {:sound 104214 :name "Crash Cymbal"}
-   {:sound 104257 :name "Bass"}
    {:sound 120403 :name "Drum"}
-   {:sound 43370  :name "Bass"}
    {:sound 63239  :name "Tambourine"}
    {:sound 121099 :name "Sleigh Bells"}
    {:sound 91191  :name "Cowbell"}])
@@ -30,7 +28,7 @@
    (fn [x] (update-in x [:sound] freesound-sample))
    freesound-drum-ids))
 
-(def bass-sound (:sound (nth freesound-drums 3)))
+(def bass-sound (freesound-sample 104257))
 
 (defn play-snare [m beat-num freq sound]
   (at (m (+ 0 beat-num)) (sound))
@@ -43,7 +41,11 @@
   (at (m (+ 0 beat-num)) (sound))
   (apply-at (m (+ freq beat-num)) play-snare m (+ freq beat-num) freq sound []))
 
-(play-snare metro-fast (metro-fast) 16 bass-sound)
+(do
+  (play-snare metro-fast (metro-fast) 16 bass-sound)
+  (play-snare metro-fast (+ (metro-fast) 2) 16 bass-sound)
+)
+
 
 ; Get a random drum sound
 (defn random-drum []
@@ -63,7 +65,7 @@
     (when (nil? (get @player-instruments ip-addr))
       (swap! player-instruments assoc ip-addr (random-drum))
       )
-    (let [sound (nth freesound-drums (mod keycode 7))]
+    (let [sound (nth freesound-drums (mod keycode (count freesound-drum-ids)))]
       (play-sound sound)
       {:status 200
      :headers {"Content-Type" "text/plain"}
