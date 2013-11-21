@@ -1,4 +1,4 @@
-(ns overtone-fun.core)
+(ns magical-orchestra.core)
 
 (use 'overtone.live)
 

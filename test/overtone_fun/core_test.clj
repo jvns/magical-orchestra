@@ -1,6 +1,6 @@
-(ns overtone-fun.core-test
+(ns magical-orchestra.core-test
   (:require [clojure.test :refer :all]
-            [overtone-fun.core :refer :all]))
+            [magical-orchestra.core :refer :all]))
 
 (deftest a-test
   (testing "FIXME, I fail."

@@ -1,4 +1,4 @@
-(ns overtone-fun.drummachine
+(ns magical-orchestra.drummachine
   (:import jline.Terminal)
   (:require
    [overtone.live :refer :all]

@@ -1,4 +1,4 @@
-(ns overtone-fun.server
+(ns magical-orchestra.server
    (:require
    [overtone.live :refer :all]
    [overtone.inst.sampled-piano :refer :all]
