@@ -5,12 +5,52 @@
    [overtone.inst.sampled-piano :refer :all]
    [overtone.inst.drum :as drum]
    [overtone.inst.synth :as synth]
+   [org.httpkit.server :refer [run-server]]
    )  
   (:gen-class))
 
-(drum/hat-demo)
+(def freesound-drum-ids
+  [
+   {:sound 104214 :name "Crash Cymbal"}
+   {:sound 104257 :name "Bass"}
+   {:sound 120403 :name "Drum"}
+   {:sound 43370  :name "Bass"}
+   {:sound 63239  :name "Tambourine"}
+   {:sound 121099 :name "Sleigh Bells"}
+   {:sound 91191  :name "Cowbell"}])
+
+(def freesound-drums (map
+   (fn [x] (update-in x [:sound] freesound-sample))
+   freesound-drum-ids))
+
+(defn random-drum []
+  (rand-nth freesound-drums))
+
+(defn play-sound [sound]
+  ((:sound sound)))
 
 
+(play-random-drum)
+
+(def stdout *out*)
+
+(def player-instruments (atom {}))
+
+(defn app [req]
+  (let [keycode (Integer/parseInt (:query-string req))
+        ip-addr (:remote-addr req)]
+    (when (nil? (get @player-instruments ip-addr))
+      (swap! player-instruments assoc ip-addr (random-drum))
+      )
+    (play-sound (get @player-instruments ip-addr))
+    {:status 200}))
+
+(def stop-server (run-server app {:port 8090}))
+(stop-server)
+
+(drum/hat-demo 10)
+
+(stop)
 (overtone.inst.synth/grunge-bass )
 
 (defn read-character []
@@ -40,9 +80,13 @@
   (at (m (+ 0 beat-num)) (sampled-piano (rand-nth a-chord)))
   (apply-at (m (+ 1 beat-num)) play-random-note m (+ 1 beat-num) a-chord []))
 (drum/tone-snare)
-(defn play-snare [m beat-num]
-  (at (m (+ 0 beat-num)) (sampled-piano (rand-nth a-chord))))
 
+(defn play-snare [m beat-num]
+  (at (m (+ 0 beat-num)) (drum/tone-snare 1000 1))
+  (apply-at (m (+ 2 beat-num)) play-snare m (+ 2 beat-num) []))
+
+
+(play-snare metro (metro))
 (chord-progression-beat metro (metro))
 (play-random-note metro (metro) (chord :C4 :major)) 
 
