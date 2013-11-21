@@ -66,18 +66,19 @@
 ;; don't change every request
 (def player-instruments (atom {}))
 
-(defn get-sound [keycode ip-addr]
-  (if (or (< keycode 37) (> keycode 40))
-    ({:name "Silence\" :sound #()"})
-    (let [player-sounds (get @player-instruments ip-addr)]
-      (nth player-sounds (mod keycode 4)))))
+(def SOUNDS-PER-PLAYER 4)
 
+(defn get-sound [keycode ip-addr]
+  (if (<= 37 keycode 40) ; arrow-keys
+    (let [player-sounds (get @player-instruments ip-addr)]
+      (nth player-sounds (mod keycode SOUNDS-PER-PLAYER)))
+    {:name "Silence" :sound (fn [& _])}))
 
 (defn play-sound-request [req]
   (let [keycode (-> req :query-string Integer/parseInt)
         ip-addr (-> req :remote-addr)]
-    (when (nil? (get @player-instruments ip-addr))
-      (swap! player-instruments assoc ip-addr (random-drums 4)))
+    (when-not (get @player-instruments ip-addr)
+      (swap! player-instruments assoc ip-addr (random-drums SOUNDS-PER-PLAYER)))
     (let [sound (get-sound keycode ip-addr)]
       (play-sound sound)
       {:status 200
