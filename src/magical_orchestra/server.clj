@@ -9,7 +9,7 @@
             [org.httpkit.server :refer [run-server]]))
 
 
-; Some drums we found on http://freesound.org
+;; Some drums we found on http://freesound.org
 (def freesound-drums
   (map #(assoc % :sound (freesound-sample (:id %)))
        [{:id 104214 :name "Crash Cymbal"}
@@ -81,9 +81,8 @@
     (let [sound (get-sound keycode ip-addr)]
       (play-sound sound)
       {:status 200
-     :headers {"Content-Type" "text/plain"}
-       :body (:name sound)}
-      )))
+       :headers {"Content-Type" "text/plain"}
+       :body (:name sound)})))
 
 ;; We need to save 'stop-server so that we can
 ;; stop the server when we're done
