@@ -4,6 +4,9 @@
    [overtone.inst.sampled-piano :refer :all]
    [overtone.inst.drum :as drum]
    [overtone.inst.synth :as synth]
+   [compojure.route :as route]
+   [compojure.handler :refer [site]] 
+   [compojure.core :refer [defroutes GET]]
    [org.httpkit.server :refer [run-server]]))
 
 
@@ -35,20 +38,32 @@
 ; don't change every request
 (def player-instruments (atom {}))
 
-(defn app [req]
-  (let [keycode (Integer/parseInt (:query-string req))
-        ip-addr (:remote-addr req)]
+(defn play-sound-request [req]
+  (let [keycode (-> req :query-string Integer/parseInt)
+        ip-addr (-> req :remote-addr)]
     (when (nil? (get @player-instruments ip-addr))
       (swap! player-instruments assoc ip-addr (random-drum))
       )
-    (play-sound (get @player-instruments ip-addr))
-    {:status 200
+    (let [sound (nth freesound-drums (mod keycode 7))]
+      (play-sound sound)
+      {:status 200
      :headers {"Content-Type" "text/plain"}
-     :body (:name (get @player-instruments ip-addr))}))
+       :body (:name sound)}
+      )))
 
-; We need to save 'stop-server so that we can 
-; stop the server when we're done
-(def stop-server (run-server app {:port 8080}))
-; (stop-server)
+;; We need to save 'stop-server so that we can 
+;; stop the server when we're done
+
+;; 
+(defroutes all-routes
+  (GET "/" [] play-sound-request)
+  (route/files "/static/")
+  (route/not-found "<p>Page not found.</p>"))
+) 
+
+(def stop-server
+  (run-server (site #'all-routes) {:port 8080}))
+
+(stop-server)
 
 

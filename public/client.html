@@ -1,0 +1,18 @@
+<html>
+  <head>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+  </head>
+  <body>
+    <script>
+      $(document).ready(function() {
+      $('body').keydown(function(event) {
+      var url = "http://localhost:8080/?" + event.keyCode;
+      $.get( url, function( data ) {
+
+      console.log(data);
+      });
+      });
+      });
+      </script>
+  </body>
+</html>
