@@ -38,14 +38,25 @@
 (def bass-sound (freesound-sample 104257))
 
 
+(defn apply-interval
+  ([m freq f]
+     (apply-interval m (m) freq f))
+  ([m beat freq f]
+     (f beat)
+     (apply-at (m (+ beat freq)) apply-interval m (+ beat freq) beat freq f)))
+
+(defn play-sound-loudly [m freq sound]
+  (apply-interval m freq
+    (fn [current-beat]
+      (dotimes [_ 8]
+        (at (m current-beat) (sound))))))
+
 (defn play-snare [m beat-num freq sound]
   ;; hack to increase volume
   (dotimes [_ 8]
     (at (m (+ 0 beat-num)) (sound)))
-  (apply-at (m (+ freq beat-num)) play-snare m (+ freq beat-num) freq sound []))
-
-
-
+  (apply-at (m (+ freq beat-num))
+            play-snare m (+ freq beat-num) freq sound []))
 
 
 ;; Get a random drum sound
