@@ -21,12 +21,30 @@
    {:sound 121099 :name "Sleigh Bells"}
    {:sound 91191  :name "Cowbell"}])
 
+
+
 (def metro-fast (metronome 960))
 (def metro-slow (metronome 60))
 ; Pull the drum sounds from the server
 (def freesound-drums (map
    (fn [x] (update-in x [:sound] freesound-sample))
    freesound-drum-ids))
+
+(def base-sound (:sound (nth freesound-drums 3)))
+
+(defn play-snare [m beat-num freq sound]
+  (at (m (+ 0 beat-num)) (sound))
+  (at (m (+ 0 beat-num)) (sound))
+  (at (m (+ 0 beat-num)) (sound))
+  (at (m (+ 0 beat-num)) (sound))
+  (at (m (+ 0 beat-num)) (sound))
+  (at (m (+ 0 beat-num)) (sound))
+  (at (m (+ 0 beat-num)) (sound))
+  (at (m (+ 0 beat-num)) (sound))
+  (apply-at (m (+ freq beat-num)) play-snare m (+ freq beat-num) freq sound []))
+
+(play-snare metro-fast (metro-fast) 8 base-sound)
+(stop)
 
 ; Get a random drum sound
 (defn random-drum []
