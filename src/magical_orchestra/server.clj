@@ -13,23 +13,21 @@
 (def freesound-drums
   (map #(assoc % :sound (freesound-sample (:id %)))
        [{:id 104214 :name "Crash Cymbal"}
-        ;;   {:sound 120403 :name "Drum"}
-        {:id 63239 :name "Tambourine"}
-        {:id 7786 :name "Kazoo"}
-        {:id 26710 :name "Snare"}
-        {:id 62793 :name "Laser"}
-        {:id 96109 :name "Xylophone"}
-        {:id 9876 :name "Car Door"}
-        {:id 26903 :name "Snare"}
-        {:id 15348 :name "Pop"}
-        {:id 9874 :name "Crow"}
-        {:id 60009 :name "Bamboo Stick"}
+        {:id 63239  :name "Tambourine"}
+        {:id 7786   :name "Kazoo"}
+        {:id 26710  :name "Snare"}
+        {:id 62793  :name "Laser"}
+        {:id 96109  :name "Xylophone"}
+        {:id 9876   :name "Car Door"}
+        {:id 26903  :name "Snare"}
+        {:id 15348  :name "Pop"}
+        {:id 9874   :name "Crow"}
+        {:id 60009  :name "Bamboo Stick"}
         {:id 121099 :name "Sleigh Bells"}
-        {:id 21840 :name "Drum"} ;; Wood noise
-        ;;   {:sound 163727 :name "Cow Mooing"}
-        {:id 65480 :name "Wine Bottle"}
-        {:id 65231 :name "Metal Bowl"}
-        {:id 91191 :name "Cowbell"}]))
+        {:id 21840  :name "Drum"} ;; Wood noise
+        {:id 65480  :name "Wine Bottle"}
+        {:id 65231  :name "Metal Bowl"}
+        {:id 91191  :name "Cowbell"}]))
 
 
 
