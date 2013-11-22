@@ -2,9 +2,18 @@
   <head>
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
   </head>
+  <style type="text/css">
+    body, h2 {
+    background-color:#222;
+    color: teal;
+    text-align: center
+    }
+  </style>
   <body>
-    <h2> Press an arrow key!</h2>
-    <h2 id="instrument"></h2>
+    <h1> Go to: http://10.0.1.61:8080/static/client.html </h2>
+    <h1> Press an arrow key!</h2>
+    <h2> You are playing: </h2>
+    <h2 id="instrument">  </h2>
     <script>
       $(document).ready(function() {
       $('body').keydown(function(event) {
