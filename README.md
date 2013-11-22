@@ -5,13 +5,16 @@ Welcome to Lyndsey and Julia's Magical Orchestra!
 ## Usage
 
 ```
-lein run -m magical-orchestra.server
+lein run
 ```
 
 Overtone takes a long time to start for some reason, so you will have
 to do some waiting.
 
-Then go to http://localhost:8080.
+Then go to `http://localhost:8080/server/client.html` and play music!
+
+Then send other people to `http://your-ip:8080/server/client.html` and 
+have THEM play music. 
 
 ## Authors
 
